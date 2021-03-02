@@ -13,6 +13,7 @@
 
 <script>
     const kvList = window.location.search.split("&");
+    console.log(kvList);
     let wait = 0;
     if (kvList) {
         for (let i = 0; i < kvList.length; i++) {
@@ -27,6 +28,7 @@
 
     targetUrl += window.location.search;
 
+    console.log("wait=" + wait);
     if (wait > 0) {
         document.getElementById('msg').innerHTML = "waiting... " + wait + "ms";
         setTimeout(jump, wait);
