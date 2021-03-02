@@ -43,14 +43,5 @@
 
     document.getElementById('msg').innerHTML = "targetUrl = " + targetUrl;
 
-    if (targetUrl) {
-        if (params) {
-            targetUrl += params;
-        }
-        document.getElementById('msg').innerHTML = "Opening " + targetUrl;
-
-        //跳过去，如果是APP schema则会拉起APP
-        window.location.href = targetUrl;
-    }
-
+    
 </script>
