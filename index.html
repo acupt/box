@@ -1,31 +1,50 @@
-##<script src="//cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>render</title>
+</head>
+<body>
 <div id="msg" style="font-size: 48px;padding: 32px">
+    Hello, world!
 </div>
-
+</body>
+</html>
 
 <script>
 
+    //取URL后面的参数
     let searchStr = window.location.search;
     if (searchStr.indexOf('?') === 0) {
         searchStr = searchStr.substr(1);
     }
 
-    let schemaUrl = "";
+    let targetUrl = "";
     const kvList = searchStr.split("&");
 
+    //遍历参数，找到待跳转url，其它参数作为跳转url的参数
+    let params = "";
     for (let i = 0; i < kvList.length; i++) {
         let kv = kvList[i].split("=");
-        if (kv[0] === 'schema') {
-            schemaUrl = kv[1];
+        if (kv[0] === 'url') {
+            targetUrl = kv[1];
+        } else {
+            if (params) {
+                params += "&" + kv[0] + "=" + kv[1];
+            } else {
+                params = "?" + kv[0] + "=" + kv[1];
+            }
         }
     }
 
-    if (schemaUrl) {
-        let i = schemaUrl.indexOf('://');
-        document.getElementById('msg').innerHTML = "Starting " + (i > 0 ? schemaUrl.substr(0, i) : "Application") + "...";
-        window.location.href = schemaUrl;
-    }
+    if (targetUrl && targetUrl.indexOf('://') > 0) {
+        if (params) {
+            targetUrl += params;
+        }
+        document.getElementById('msg').innerHTML = "Opening " + targetUrl;
 
+        //跳过去，如果是APP schema则会拉起APP
+        window.location.href = targetUrl;
+    }
 
 </script>
