@@ -12,8 +12,13 @@
 </html>
 
 <script>
-    const kvList = window.location.search.split("&");
+    let searchStr = window.location.search;
+    if (searchStr.indexOf('?') === 0) {
+        searchStr = searchStr.substr(1);
+    }
+    const kvList = searchStr.split("&");
     console.log(kvList);
+    
     let wait = 0;
     if (kvList) {
         for (let i = 0; i < kvList.length; i++) {
