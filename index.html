@@ -13,44 +13,18 @@
 
 <script>
 
-    document.getElementById('msg').innerHTML = "开始执行js";
+    // let targetUrl = "https://www.baidu.com";
+    let targetUrl = "kademo://auth";
 
-    //取URL后面的参数
-    let searchStr = window.location.search;
-    if (searchStr.indexOf('?') === 0) {
-        searchStr = searchStr.substr(1);
-    }
+    targetUrl += window.location.search;
 
-    let targetUrl = "";
-    const kvList = searchStr.split("&");
+    document.getElementById('msg').innerHTML = "Opening " + targetUrl;
 
-    //遍历参数，找到待跳转url，其它参数作为跳转url的参数
-    let params = "";
-    for (let i = 0; i < kvList.length; i++) {
-        let kv = kvList[i].split("=");
-        let k = kv[0];
-        let v = decodeURI(kv[1]);
-        if (k === 'url') {
-            targetUrl = v;
-        } else {
-            if (params) {
-                params += "&" + k + "=" + v;
-            } else {
-                params = "?" + k + "=" + v;
-            }
-        }
-    }
-
-    document.getElementById('msg').innerHTML = "targetUrl = " + targetUrl;
-
-    if (targetUrl) {
-        if (params) {
-            targetUrl += params;
-        }
-        document.getElementById('msg').innerHTML = "Opening " + targetUrl;
-
-        //跳过去，如果是APP schema则会拉起APP
-        window.location.href = targetUrl;
-    }
-
+    window.location.href = targetUrl;
+    //
+    // setTimeout(jump, 2000);
+    //
+    // function jump() {
+    //     window.location.href = targetUrl;
+    // }
 </script>
