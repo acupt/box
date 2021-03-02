@@ -28,13 +28,15 @@
     let params = "";
     for (let i = 0; i < kvList.length; i++) {
         let kv = kvList[i].split("=");
-        if (kv[0] === 'url') {
-            targetUrl = kv[1];
+        let k = decodeURI(kv[0]);
+        let v = decodeURI(kv[1]);
+        if (k === 'url') {
+            targetUrl = v;
         } else {
             if (params) {
-                params += "&" + kv[0] + "=" + kv[1];
+                params += "&" + k + "=" + v;
             } else {
-                params = "?" + kv[0] + "=" + kv[1];
+                params = "?" + k + "=" + v;
             }
         }
     }
