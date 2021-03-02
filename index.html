@@ -28,7 +28,7 @@
     let params = "";
     for (let i = 0; i < kvList.length; i++) {
         let kv = kvList[i].split("=");
-        let k = decodeURI(kv[0]);
+        let k = kv[0];
         let v = decodeURI(kv[1]);
         if (k === 'url') {
             targetUrl = v;
