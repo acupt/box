@@ -21,10 +21,11 @@
     document.getElementById('msg').innerHTML = "Opening " + targetUrl;
 
     window.location.href = targetUrl;
-    //
-    // setTimeout(jump, 2000);
-    //
-    // function jump() {
-    //     window.location.href = targetUrl;
-    // }
+    
+    setTimeout(jump, 2000);
+
+    function jump() {
+        document.getElementById('msg').innerHTML = "gogogo " + targetUrl;
+        window.location.href = targetUrl;
+    }
 </script>
