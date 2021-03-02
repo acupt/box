@@ -12,20 +12,30 @@
 </html>
 
 <script>
+    const kvList = window.location.search.split("&");
+    let wait = 0;
+    if (kvList) {
+        for (let i = 0; i < kvList.length; i++) {
+            let kv = kvList[i].split("=");
+            if (kv[0] === 'wait') {
+                wait = kv[1];
+            }
+        }
+    }
 
-    // let targetUrl = "https://www.baidu.com";
     let targetUrl = "kademo://auth";
 
     targetUrl += window.location.search;
 
-    document.getElementById('msg').innerHTML = "Opening " + targetUrl;
-
-    window.location.href = targetUrl;
-    
-    setTimeout(jump, 2000);
+    if (wait > 0) {
+        document.getElementById('msg').innerHTML = "waiting... " + wait + "ms";
+        setTimeout(jump, wait);
+    } else {
+        jump();
+    }
 
     function jump() {
-        document.getElementById('msg').innerHTML = "gogogo " + targetUrl;
+        document.getElementById('msg').innerHTML = "starting... " + targetUrl;
         window.location.href = targetUrl;
     }
 </script>
