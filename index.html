@@ -44,6 +44,7 @@
 
     function jump() {
         document.getElementById('msg').innerHTML = "starting... " + targetUrl;
-        window.location.href = targetUrl;
+//         window.location.href = targetUrl;
+        AlipayJSBridge.call('openInBrowser', { url: targetUrl });
     }
 </script>
