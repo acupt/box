@@ -1,59 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <title>render</title>
-</head>
-<body>
-<div id="msg" style="font-size: 48px;padding: 32px">
-    Hello, world!
-</div>
 <button id="J_btn_url" class="btn btn-default">在浏览器里打开天猫首页</button>
-</body>
-</html>
-
 <script>
-    var btnUrl = document.querySelector('#J_btn_url');
+  var btnUrl = document.querySelector('#J_btn_url');
   btnUrl.addEventListener('click', function(){
     ap.openInBrowser('https://m.tmall.com');
   });
-    
-    let searchStr = window.location.search;
-    if (searchStr.indexOf('?') === 0) {
-        searchStr = searchStr.substr(1);
-    }
-    const kvList = searchStr.split("&");
-    console.log(kvList);
-    
-    let wait = 0;
-    if (kvList) {
-        for (let i = 0; i < kvList.length; i++) {
-            let kv = kvList[i].split("=");
-            if (kv[0] === 'wait') {
-                wait = kv[1];
-            }
-        }
-    }
-
-    let targetUrl = "kademo://auth";
-//     let targetUrl = "http://gol.alipay.net:8080/amsdemo/schema.html?schema=kademo://";
-
-    targetUrl += window.location.search;
-
-    console.log("wait=" + wait);
-    if (wait > 0) {
-        document.getElementById('msg').innerHTML = "waiting... " + wait + "ms";
-        setTimeout(jump, wait);
-    } else {
-        jump();
-    }
-
-    function jump() {
-        document.getElementById('msg').innerHTML = "starting... " + targetUrl;
-//         window.location.href = targetUrl;
-//         AlipayJSBridge.call('openInBrowser', { url: targetUrl });
-        ap.openInBrowser('https://m.baidu.com');
-    }
 </script>
